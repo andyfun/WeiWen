@@ -1,0 +1,46 @@
+<resources>
+    <string name="app_name">微文</string>
+    <string name="drawer_open">打开</string>
+    <string name="drawer_close">关闭</string>
+
+    <string name="gamm_message_notification_title_template">Gamm message: %1$s</string>
+
+    <!-- TODO: remove this placeholder text -->
+    <string name="gamm_message_notification_placeholder_text_template">You said %1$s and lorem ipsum
+        dolor sit amet, consectetur adipiscing elit. Etiam non enim magna. Morbi dictum, velit vel
+        semper venenatis, magna odio volutpat velit, at ullamcorper nulla lacus sed turpis.
+        Pellentesque vitae metus elit, nec tincidunt tellus. Integer sed nisl sem, ullamcorper
+        ornare lacus. Duis ac mauris sed massa congue volutpat. Donec sed erat sit amet turpis
+        viverra rhoncus sit amet nec magna. Donec lacinia ligula at libero volutpat volutpat nec nec
+        tortor.
+    </string>
+
+    <string name="action_share">Share</string>
+    <string name="action_reply">Reply</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">正在开发</string>
+    <string name="menu_day_recommand">每日推荐</string>
+    <string name="menu_day_prose">每日散文</string>
+    <string name="menu_day_write">每日随笔</string>
+    <string name="menu_day_song">每日诗歌</string>
+
+    <string name="string_tab_love">爱情</string>
+    <string name="string_tab_shuqing">抒情</string>
+    <string name="string_tab_jingmei">精美</string>
+    <string name="string_tab_shanggan">伤感</string>
+    <string name="string_tab_qingan">情感</string>
+    <string name="string_tab_qinqing">亲情</string>
+    <string name="string_tab_jingdian">经典</string>
+
+    <string name="string_life">生活感悟</string>
+    <string name="string_qinggan">情感体会</string>
+    <string name="string_readbook">读书感悟</string>
+    <string name="string_sanyecao">三叶草</string>
+
+    <string name="string_tab_recommand">推荐</string>
+    <string name="string_tab_lizhi">励志</string>
+    <string name="string_tab_school">校园</string>
+    <string name="string_tab_fun">搞笑</string>
+    <string name="string_tab_zheli">哲理</string>
+</resources>

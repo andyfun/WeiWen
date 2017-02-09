@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#6c7969</color>
+    <color name="colorPrimaryDark">#8dea99</color>
+    <color name="colorAccent">#FF4081</color>
+    <color name="black">#000</color>
+    <color name="skyblue">#c4593f</color>
+    <color name="yes_white_normal">#dababa</color>
+    <color name="yes_white_selecor">#ed6546</color>
+    <color name="activity_tab_color">#e9e3e3</color>
+</resources>

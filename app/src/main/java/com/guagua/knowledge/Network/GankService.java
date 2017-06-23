@@ -4,6 +4,7 @@ import com.guagua.knowledge.Bean.GankNews;
 
 import retrofit2.Call;
 import retrofit2.http.GET;
+import retrofit2.http.POST;
 import retrofit2.http.Path;
 import retrofit2.http.Query;
 
@@ -34,4 +35,7 @@ public interface GankService {
 
     @GET("{jinpath}")
     Call<String>  getArtcleDetail(@Path("jinpath")String jingdian);
+
+    @POST("cps_admin/index")
+    Call<String> getModong(@Query("account")String account,@Query("password") String password );
 }

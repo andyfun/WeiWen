@@ -41,7 +41,7 @@ public class GankUrl {
     public static final String GuaGua_XIU_aiqin = "/wenzhang/aiqing";//现代
     public static final String GuaGua_XIU_zheli = "/wenzhang/zheli";//现代
 
-
+    public static final String Modong_URL = "http://cp.mg3721.com/";
 
     public static final String ARG_PARAM = "keyType";
     public static final String ARG_PARAM_MENU = "menuType";

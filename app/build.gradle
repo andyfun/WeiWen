@@ -2,7 +2,7 @@ apply plugin: 'com.android.application'
 
 android {
     compileSdkVersion 24
-    buildToolsVersion "24.0.1"
+    buildToolsVersion '25.0.0'
     useLibrary 'org.apache.http.legacy'
 
     defaultConfig {
@@ -31,7 +31,6 @@ dependencies {
     compile 'com.android.support:cardview-v7:24.2.1'
     compile 'com.android.support:recyclerview-v7:24.2.1'
     compile 'com.squareup.retrofit2:retrofit:2.1.0'
-    compile 'com.squareup.retrofit2:converter-gson:2.0.0-beta3'
     compile 'com.squareup.picasso:picasso:2.5.2'
     compile 'com.squareup.okhttp3:okhttp:3.0.1'
     compile 'com.android.support:support-v4:24.2.1'
@@ -39,7 +38,6 @@ dependencies {
     testCompile 'junit:junit:4.12'
     annotationProcessor 'com.jakewharton:butterknife-compiler:8.4.0'
     compile 'com.squareup.okhttp3:logging-interceptor:3.4.2'
-    compile 'cn.bmob.android:bmob-sdk:3.5.0'
     compile files('libs/baidu_cuid.jar')
     compile files('libs/RTChatSDK.jar')
     compile files('libs/gasdk_u3d_1.0.0.jar')

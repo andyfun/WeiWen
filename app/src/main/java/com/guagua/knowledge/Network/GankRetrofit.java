@@ -32,7 +32,6 @@ import okhttp3.Request;
 import okhttp3.logging.HttpLoggingInterceptor;
 import retrofit2.Call;
 import retrofit2.Callback;
-import retrofit2.GsonConverterFactory;
 import retrofit2.Response;
 import retrofit2.Retrofit;
 
@@ -76,11 +75,11 @@ public class GankRetrofit {
            .cache(cache)
            .build();
 
-    public static Retrofit retrofit = new Retrofit.Builder()
-            .baseUrl(GankUrl.GANK_API_URL)
-            .addConverterFactory(GsonConverterFactory.create())
-            .client(okHttpClient)
-            .build();
+//    public static Retrofit retrofit = new Retrofit.Builder()
+//            .baseUrl(GankUrl.GANK_API_URL)
+//            .addConverterFactory(GsonConverterFactory.create())
+//            .client(okHttpClient)
+//            .build();
 
     public static Retrofit retrofitHtml = new Retrofit.Builder()
             .baseUrl(GankUrl.GuaGua_API_URL)
@@ -93,26 +92,32 @@ public class GankRetrofit {
             .client(okHttpClient)
             .build();
 
-    public static void getAllResult(final String keyType, final int count, final int pageIndex,
-                                    final RetrofitCallBack<GankNews> retrofitCallBack){
-        Log.d("allResull ","keyType = "+keyType+",count="+count+",pageIndex="+pageIndex);
-        Call<GankNews> call = retrofit.create(GankService.class).getGankNews(keyType,count,pageIndex);
-        call.enqueue(new Callback<GankNews>() {
-            @Override
-            public void onResponse(Call<GankNews> call, Response<GankNews> response) {
-                if(response.isSuccessful()){
-                    retrofitCallBack.retrofitSuccess(keyType,response.body());
-                }else {
-                    retrofitCallBack.retrofitFailure(keyType,"call.enqueue onSuccess but response not isSuccesssful");
-                }
-            }
+    public static Retrofit modongRetro = new Retrofit.Builder()
+            .baseUrl(GankUrl.Modong_URL)
+            .addConverterFactory(new ToStringConverterFactory("gbk"))
+            .client(okHttpClient)
+            .build();
 
-            @Override
-            public void onFailure(Call<GankNews> call, Throwable t) {
-                retrofitCallBack.retrofitFailure(keyType,"onFailure:" + t.getMessage());
-            }
-        });
-    }
+//    public static void getAllResult(final String keyType, final int count, final int pageIndex,
+//                                    final RetrofitCallBack<GankNews> retrofitCallBack){
+//        Log.d("allResull ","keyType = "+keyType+",count="+count+",pageIndex="+pageIndex);
+//        Call<GankNews> call = retrofit.create(GankService.class).getGankNews(keyType,count,pageIndex);
+//        call.enqueue(new Callback<GankNews>() {
+//            @Override
+//            public void onResponse(Call<GankNews> call, Response<GankNews> response) {
+//                if(response.isSuccessful()){
+//                    retrofitCallBack.retrofitSuccess(keyType,response.body());
+//                }else {
+//                    retrofitCallBack.retrofitFailure(keyType,"call.enqueue onSuccess but response not isSuccesssful");
+//                }
+//            }
+//
+//            @Override
+//            public void onFailure(Call<GankNews> call, Throwable t) {
+//                retrofitCallBack.retrofitFailure(keyType,"onFailure:" + t.getMessage());
+//            }
+//        });
+//    }
 
     /**
      *  请求散文列表
@@ -143,7 +148,27 @@ public class GankRetrofit {
         });
 
     }
+    public  static void requestModong(){
+        Call<String> call = modongRetro.create(GankService.class).getModong("modong0321","modong170321");
+        call.enqueue(new Callback<String>() {
+            @Override
+            public void onResponse(Call<String> call, Response<String> response) {
 
+                String body = response.body();
+                Log.d("","body = "+body);
+
+
+            }
+
+            @Override
+            public void onFailure(Call<String> call, Throwable t) {
+              Log.d("",t.getLocalizedMessage());
+
+            }
+        });
+
+
+    }
     /**
      * 散文详情
      * @param callback

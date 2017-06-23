@@ -26,7 +26,6 @@ import com.guagua.knowledge.Fragment.DayProseFragment;
 import com.guagua.knowledge.Fragment.DayWriteFragment;
 import com.guagua.knowledge.FragmentType;
 
-import cn.bmob.v3.Bmob;
 
 import static com.guagua.knowledge.GankUrl.BDAdView.SDK_APP_KEY;
 import static com.guagua.knowledge.GankUrl.BDAdView.SDK_BANNER_AD_ID;
@@ -59,7 +58,7 @@ public class MainActivity extends AppCompatActivity implements DayPsongFragment.
         toobar.setNavigationIcon(R.drawable.menu);
         setupNavigation();
         //addBDBanerAD();
-        Bmob.initialize(this, "60ca8c597a4aa976c882f2d69b3c66fb");
+        //Bmob.initialize(this, "60ca8c597a4aa976c882f2d69b3c66fb");
     }
 
     public void addBDBanerAD(){

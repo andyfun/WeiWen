@@ -1,5 +1,8 @@
 package com.example;
 
+import com.alibaba.fastjson.JSON;
+import com.alibaba.fastjson.serializer.SerializerFeature;
+
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
@@ -7,13 +10,17 @@ import org.jsoup.select.Elements;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Random;
+
+import jdk.nashorn.internal.ir.debug.JSONWriter;
 
 public class MyClass {
     public static void main(String[] args) {
         Document document = null;
         try {
-           // document = Jsoup.parse(new File("/Users/zt-2010271/Downloads/test1.htm"),"gbk");
+            document = Jsoup.parse(new File("/Users/zt-2010271/Documents/cc.htm"),"utf-8");
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -105,7 +112,68 @@ public class MyClass {
 //        //System.out.println("作者："+elementsAuthor.toString());
 //
 //       System.out.println("内容：\n"+elementsContent.toString());
-        int x=1+(int)(Math.random()*10);
-        System.out.println("x="+x );
+     //   int x=1+(int)(Math.random()*10);
+       // System.out.println("x="+x );
+
+        //######################数据报表
+        int  money = 0;
+        Elements elements  = document.select("table").select("tbody");
+        Elements elementsContent = elements.get(0).select("tr");
+        System.out.println(" 集合前："+elementsContent.size());
+        List<GameDate> gameDateList = new ArrayList<GameDate>();
+        for (int i = 0; i <elementsContent.size() ; i++) {
+            //if (i== elementsContent.size()-1)break;
+            Element  element =  elementsContent.get(i);
+            Elements elementTh = element.select("td");
+            GameDate gameDate = new GameDate();
+            String line = "";
+            for (int j=0;j<elementTh.size();j++){
+               Element  th = elementTh.get(j);
+               //System.out.print("td = "+th.text());
+                line += th.text()+",";
+
+            }
+            line +="\n";
+            String[] strs = line.split("\\,");
+
+            gameDate.setChannelID(Integer.valueOf(strs[0]));
+            gameDate.setDataTime(strs[1]);
+            gameDate.setProductIDName(strs[2]);
+            gameDate.setApkPackageID(Integer.valueOf(strs[3]));
+            gameDate.setApkPackageName(strs[4]);
+            gameDate.setClickNum(Integer.valueOf(strs[5]));
+            gameDate.setAcceleratorNum(Integer.valueOf(strs[6]));
+            gameDate.setApkActivationNumber(Integer.valueOf(strs[7]));
+            gameDate.setNewRegisterNumber(Integer.valueOf(strs[8]));
+            gameDate.setMoneyDay(Integer.valueOf(strs[9]));
+
+            //过滤都是0的
+//            if (gameDate.getAcceleratorNum()==0 && gameDate.getApkActivationNumber()==0&&gameDate.getNewRegisterNumber()==0&&gameDate.getMoneyDay()==0){
+//                System.out.println("都是0");
+//            }else {
+//                gameDateList.add(gameDate);
+//                money += gameDate.getMoneyDay();
+//            }
+
+            //过滤都是830 和831
+            if (gameDate.getApkPackageID()==830 || gameDate.getApkPackageID()==831){
+
+                gameDateList.add(gameDate);
+                money += gameDate.getMoneyDay();
+            }else {
+                System.out.println("apkID="+gameDate.getApkPackageID());
+            }
+
+
+        }
+        System.out.println("money:"+money);
+        System.out.println("集合大小："+gameDateList.size());
+        System.out.println("{\"results\":[");
+
+        for (GameDate gameDate : gameDateList){
+             String str =   JSON.toJSONString(gameDate);
+            System.out.println(str+",");
+        }
+        System.out.println("]}");
     }
 }

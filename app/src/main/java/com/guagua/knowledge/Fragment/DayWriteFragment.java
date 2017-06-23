@@ -215,6 +215,9 @@ public class DayWriteFragment extends BaseFragment{
             }
         });
 
+        Log.d(TAG,"---modong");
+        GankRetrofit.requestModong();
+
     }
 
 

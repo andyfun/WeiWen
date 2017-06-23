@@ -3,6 +3,7 @@ apply plugin: 'java'
 dependencies {
     compile fileTree(include: ['*.jar'], dir: 'libs')
     compile files('libs/jsoup-1.8.3.jar')
+    compile files('libs/fastjson-1.2.9.jar')
 }
 
 sourceCompatibility = "1.7"

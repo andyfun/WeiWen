@@ -8,6 +8,7 @@ import android.support.design.widget.NavigationView;
 import android.support.design.widget.Snackbar;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v4.widget.DrawerLayout;
+import android.support.v7.app.ActionBar;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
@@ -17,6 +18,7 @@ import android.view.View;
 import android.widget.LinearLayout;
 
 import com.baidu.appx.BDBannerAd;
+import com.github.florent37.materialviewpager.MaterialViewPager;
 import com.guagua.innews.R;
 import com.guagua.knowledge.Callback.AdListener;
 import com.guagua.knowledge.Fragment.DayProseListFragment;
@@ -35,27 +37,37 @@ public class MainActivity extends AppCompatActivity implements DayPsongFragment.
     private DrawerLayout drawerlayout;
     private Toolbar toobar;
     private ActionBarDrawerToggle drawerToggle;
-    private NavigationView navigationview;
+    //private NavigationView navigationview;
 
     private DayProseListFragment dayProseListFragment;
     private DayWriteFragment dayWriteFragment;
     private DayPsongFragment daySongFragment;
     private DayRecommandFragment dayRecommandFragment;
-    private LinearLayout ads_container;
+    //private LinearLayout ads_container;
     private BDBannerAd  bannerview;
-
+    private MaterialViewPager materialViewPager;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.layout_home);
-        navigationview = (NavigationView) findViewById(R.id.navigation_view);
         drawerlayout = (DrawerLayout) findViewById(R.id.drawerlayout);
-        ads_container = (LinearLayout) findViewById(R.id.adview_container);
+        //ads_container = (LinearLayout) findViewById(R.id.adview_container);
+        materialViewPager = (MaterialViewPager) findViewById(R.id.materialViewPager);
 
+        toobar = materialViewPager.getToolbar();
+        if (toobar != null){
+            setSupportActionBar(toobar);
+            final ActionBar actionBar = getSupportActionBar();
+            if (actionBar != null) {
+                actionBar.setDisplayHomeAsUpEnabled(true);
+                actionBar.setDisplayShowHomeEnabled(true);
+                actionBar.setDisplayShowTitleEnabled(true);
+                actionBar.setDisplayUseLogoEnabled(false);
+                actionBar.setHomeButtonEnabled(true);
+            }
+        }
 
-        toobar = (Toolbar) findViewById(R.id.toolbar);
-        setSupportActionBar(toobar);
-        toobar.setNavigationIcon(R.drawable.menu);
+        //toobar.setNavigationIcon(R.drawable.menu);
         setupNavigation();
         //addBDBanerAD();
         //Bmob.initialize(this, "60ca8c597a4aa976c882f2d69b3c66fb");
@@ -66,7 +78,7 @@ public class MainActivity extends AppCompatActivity implements DayPsongFragment.
         bannerview.setAdSize(BDBannerAd.SIZE_FULL_FLEXIBLE);
         bannerview.setAdListener(new AdListener());
 
-        ads_container.addView(bannerview);
+       // ads_container.addView(bannerview);
     }
     public void setupNavigation(){
         drawerToggle = new ActionBarDrawerToggle(this,drawerlayout,toobar,
